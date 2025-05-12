@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,25 +7,120 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:wght@100..900&family=Lobster&family=Noto+Sans:wght@100..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
     }
 
     .navbar {
       background-color: #111;
       font-family: 'Roboto', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 3px 5px rgba(255, 0, 0, 0.2);
+      transition: all 0.3s ease;
     }
 
     .navbar-brand {
       font-family: 'Lobster', cursive;
       font-size: 1.8rem;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: red;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+
+    @media (min-width: 992px) {
+      .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        background-color: #1a1a1a;
+        border: none;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      .dropdown-menu {
+        background-color: #1a1a1a;
+        border: none;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+
+    .dropdown-item {
+      color: white;
+      position: relative;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: #f00;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #fff;
+      padding-left: 30px;
+    }
+
+    .dropdown-item:hover::before {
+      opacity: 1;
+      left: 15px;
+    }
+
+    .dropdown-item:active {
+      background-color: #f00;
     }
 
     .intro-section {
@@ -36,7 +130,7 @@
       display: flex;
       align-items: center;
       padding-left: 5%;
-      position: relative;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .intro-content {
@@ -50,6 +144,7 @@
       color: #f00;
       margin-bottom: 20px;
       line-height: 1.2;
+      animation: slideInLeft 1.2s ease;
     }
 
     .intro-content p {
@@ -57,6 +152,7 @@
       margin-bottom: 30px;
       color: #ddd;
       font-family: 'Noto Sans', sans-serif;
+      animation: slideInLeft 1.5s ease;
     }
 
     .btn-light {
@@ -72,7 +168,7 @@
     .btn-light:hover {
       background-color: #f00;
       color: #fff;
-      transform: translateY(-3px);
+      transform: translateY(-3px) scale(1.05);
     }
 
     .section-title {
@@ -84,17 +180,32 @@
     .our-story-section {
       padding: 80px 0;
       background-color: #111;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .content-section {
+      padding: 80px 0;
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(2, 1fr);
       gap: 10px;
+      grid-template-areas:
+        "tall car"
+        "tall food";
     }
 
     .gallery-grid .tall {
-      grid-row: span 2;
+      grid-area: tall;
+    }
+
+    .gallery-grid .car {
+      grid-area: car;
+    }
+
+    .gallery-grid .food {
+      grid-area: food;
     }
 
     .gallery-grid img {
@@ -102,37 +213,90 @@
       height: 100%;
       object-fit: cover;
       border-radius: 10px;
+      transition: transform 0.3s ease;
     }
 
-    .content-section {
-      padding: 60px 0;
+    .gallery-grid img:hover {
+      transform: scale(1.05);
     }
 
     .content-section h3 {
       color: #f00;
       font-weight: 600;
+      animation: slideInRight 1.2s ease;
     }
 
     .content-section p {
       color: #ccc;
+      animation: fadeIn 1.4s ease;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      0% { opacity: 0; transform: translateX(50px); }
+      100% { opacity: 1; transform: translateX(0); }
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">QPTech</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
-          <li class="nav-item"><a class="nav-link" href="#ai">AI & Future</a></li>
-          <li class="nav-item"><a class="nav-link" href="#autos">Cars & EVs</a></li>
-          <li class="nav-item"><a class="nav-link" href="#food">Food & AgriTech</a></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="latesttrendsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Latest Trends
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="latesttrendsdropdown">
+              <li><a class="dropdown-item" href="#future">Future Application and Potentials</a></li>
+              <li><a class="dropdown-item" href="#trend-tech">Technology</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="carsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cars and Automobiles
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="carsdropdown">
+              <li><a class="dropdown-item" href="#latest-cars">Latest Cars and Models</a></li>
+              <li><a class="dropdown-item" href="#car-tech">Technology and EVs</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="fooddropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Food and Agriculture
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fooddropdown">
+              <li><a class="dropdown-item" href="#tools">New Tools</a></li>
+              <li><a class="dropdown-item" href="#food-tech">Machines and Technology</a></li>
+            </ul>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -151,15 +315,9 @@
       <div class="row align-items-center">
         <div class="col-md-6">
           <div class="gallery-grid">
-            <div class="tall">
-<img src="Images/Machine-Learning.jpg" style="width: 250px; height: 300px; object-fit: cover;" class="d-block ms-auto">
-            </div>
-            <div>
-              <img src="https://cdn.pixabay.com/photo/2020/11/02/10/14/electric-car-5700704_1280.jpg" alt="EV Dashboard">
-            </div>
-            <div>
-              <img src="https://cdn.pixabay.com/photo/2016/02/19/10/00/tractor-1206623_1280.jpg" alt="Agriculture Machine">
-            </div>
+            <div class="tall"><img src="Images/machinelearning.png" style="height: 400px;"></div>
+            <div class="car"><img src="Images/carsmall.png" style="height: 170px;"></div>
+            <div class="food"><img src="Images/foodorig.jpg" style="height: 230px;"></div>
           </div>
         </div>
         <div class="col-md-6">
@@ -194,5 +352,4 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
