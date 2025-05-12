@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QPTech Blog - Latest Trends</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lobster&family=Noto+Sans:wght@100..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background-color: #111;
+      font-family: 'Roboto', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 3px 5px rgba(255, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+      font-family: 'Lobster', cursive;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .navbar-brand:hover {
+      color: #ff0000;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #fff;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+
+    .nav-link:hover {
+      color: #ff0000;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ff0000;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+
+    @media (min-width: 992px) {
+      .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        background-color: #1a1a1a;
+        border: none;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      .dropdown-menu {
+        background-color: #1a1a1a;
+        border: none;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+
+    .dropdown-item {
+      color: #fff;
+      position: relative;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: #ff0000;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #fff;
+      padding-left: 30px;
+    }
+
+    .dropdown-item:hover::before {
+      opacity: 1;
+      left: 15px;
+    }
+
+    .dropdown-item:active {
+      background-color: #ff0000;
+    }
+    
+    .breadcrumb {
+      background-color: #1a1a1a;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    
+    .breadcrumb-item a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: var(--light-color);
+    }
+    
+    .category-header {
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .article-card {
+      background-color: #1a1a1a;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+      width: 100%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .article-img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    
+    .article-meta {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    .article-title {
+      color: white;
+      font-weight: 600;
+      margin: 15px 0;
+    }
+    
+    .article-excerpt {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    
+    .read-more {
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    
+    .article-content {
+      padding: 20px;
+      color: #ddd;
+      line-height: 1.6;
+    }
+    
+    .article-content h3 {
+      color: var(--primary-color);
+      margin-top: 20px;
+    }
+    
+    .article-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    @media (max-width: 992px) {
+      .article-card {
+        width: 90%;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .article-card {
+        width: 95%;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .article-content {
+        padding: 15px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .article-card {
+        width: 100%;
+        border-radius: 0;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+    
+    .hero {
+      height: 40vh;
+      background: linear-gradient(135deg, #1a0000, #4d0000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+      animation: heroAnimation 1s ease-out;
+    }
+
+    @keyframes heroAnimation {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+    }
+        footer {
+      background-color: #111;
+      padding: 60px 0 20px;
+      color: #fff;
+    }
+
+    .footer-logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .footer-links h4 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #ff0000;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ff0000;
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: #ff0000;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      text-decoration: none;
+    }
+
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: #fff;
+      color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      0% { opacity: 0; transform: translateX(50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .breadcrumb {
+      background-color: #1a1a1a;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    
+    .breadcrumb-item a {
+      color: #ff0000;
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: #fff;
+    }
+
+    @media (max-width: 992px) {
+      .intro-content {
+        max-width: 70%;
+      }
+      
+      .intro-content h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .intro-section {
+        background: linear-gradient(to right, #000 70%, transparent),
+          url('Images/ferrariedit.png') no-repeat right center/contain;
+      }
+      
+      .intro-content {
+        max-width: 100%;
+        padding: 20px;
+      }
+      
+      .intro-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .intro-content p {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .content-section h3 {
+        font-size: 1.5rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "tall"
+          "car"
+          "food";
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">QPTech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="Trends.html" id="latesttrendsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Latest Trends
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="latesttrendsdropdown">
+              <li><a class="dropdown-item" href="Trends.html">Future Application and Potentials</a></li>
+              <li><a class="dropdown-item" href="Trends.html">Technology</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="cars.html" id="carsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cars and Automobiles
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="carsdropdown">
+              <li><a class="dropdown-item" href="cars.html">Latest Cars and Models</a></li>
+              <li><a class="dropdown-item" href="evs.html">Technology and EVs</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="FA.html" id="fooddropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Food and Agriculture
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fooddropdown">
+              <li><a class="dropdown-item" href="FA.html">New Tools</a></li>
+              <li><a class="dropdown-item" href="FA.html">Machines and Technology</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="container my-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="evs.html" style="font-weight: bold; color: #fff;">Technology & EVs</a></li>
+      </ol>
+    </nav>
+    
+    </div>
+    <section class="hero">
+        <div class="container">
+        <h1>Find the Latest News and Updates in Technology and EVs</h1>
+        <p class="lead">ech and EV news you need, now. Stay updated on the latest breakthroughs and trends.</p>
+        </div>
+    </section>
+    
+            <div class="article-card">
+                <br>
+          <img src="Images/faraday.png" alt="Faraday Future" class="article-img">
+          <div class="p-4">
+            <div class="article-meta">By Iulian Dnistran | May 12, 2025</div>
+            <h2 class="article-title">Faraday Future Sold Fewer Than 20 Cars In Two Years</h2>
+            <p class="article-excerpt">The troubled EV startup continues to struggle as production and financial issues plague the company...</p>
+            <a class="read-more" data-bs-toggle="collapse" href="#article3" role="button" style="color: #ff0000;">Show/Hide Article →</a>
+          </div>
+          <div class="collapse" id="article3">
+            <div class="article-content">
+              <p>Granted, the FF91 is a very luxurious EV. But even Bugatti moved more cars.</p>
+              
+              <p>Faraday Future lost nearly $44 million in the first quarter.</p>
+              <p>It sold two cars in three months.</p>
+              <p>The company's hopes hinge on its new lineup of more affordable FX-branded EVs.</p>
+              
+              <p>Troubled California startup Faraday Future is struggling to keep the lights on. In the first quarter of this year, it sold just two electric vehicles—one in California and one in New York. Since starting production of the FF91 EV in March 2023, the luxury car startup has sold just 16 vehicles, according to its latest SEC filing. The first ten were sold in 2023, and another four were sold in 2024.</p>
+              
+              <p>Its financial situation isn't looking particularly good either, despite the company claiming in its latest quarterly report that the figures show "clear progress on both financial and operational fronts."</p>
+              
+              <h3>Financial details</h3>
+              <p>Faraday Future banked $300,000 in revenue in the first quarter from the two vehicle deliveries it made, as well as some lease revenue from past deliveries. That said, the numbers seems a bit wonky since the price of a single FF91 EV is roughly $300,000.</p>
+              
+              <p>The company's total operating expenses decreased by $200,000 year-over-year, reaching $22.8 million, while its net losses increased by $200,000, amounting to $43.8 million. At the same time, FF's net assets went up by 21.6% year-over-year, reaching $139.8 million; its operating cash outflow also went up to $20.3 million, an increase of 38%.</p>
+              
+              <h3>Future plans</h3>
+              <p>With a handful of deliveries this year so far, it's hard to see the FF91 2.0 ultra-luxury sedan ever taking off. For reference, Rolls-Royce, which has always been a low-volume automaker, sold over 5,000 cars last year, with the majority of them being the all-electric Spectre.</p>
+              
+              <p>To move things in the right direction, Faraday Future has shifted its attention to a lineup of more affordable models that will carry the "FX" badge. The first of the new FX EVs, an electric minivan dubbed the Super One, is expected to debut at the end of June with a sub-$50,000 price tag. Other models are lined up for a big reveal later this year, including a Toyota RAV4-sized crossover.</p>
+              
+              <p>The company claims it has received 1,300 pre-orders from two companies in the United States for its electric minivan, all paid for with non-refundable deposits. However, these orders are non-binding.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="article-card">
+          <img src="Images/trump.png" alt="Toyota Factory" class="article-img">
+          <div class="p-4">
+            <div style="text-align: left;">
+            <div class="article-meta">By Suvrat Kothari | May 12, 2025</div>
+            <h2 class="article-title">Toyota May Be Losing $1 Million An Hour Due To Trump's Tariffs</h2>
+            <p class="article-excerpt">The cloud of uncertainty is starting to fade around tariffs as automakers finally get a clearer picture of the impact. Tariffs are expected to cost Ford $1.5 billion and General Motors between $4-$5 billion this fiscal year...</p>
+            <a class="read-more" data-bs-toggle="collapse" href="#article1" role="button" style="color: #ff0000;">Show/Hide Article →</a>
+          </div>
+          <br>
+          <div class="collapse" id="article1">
+            <div class="article-content" style="text-align: left; padding: 0px;">
+              <p>The cloud of uncertainty is starting to fade around tariffs as automakers finally get a clearer picture of the impact. Tariffs are expected to cost Ford $1.5 billion and General Motors between $4-$5 billion this fiscal year. But the biggest impact could be on Toyota. One report indicates that the automaker might lose a million dollars every hour. Let that sink in.</p>
+              
+              <p>Welcome to Critical Materials, your daily round-up of news and events shaping the world of electric cars and technology. Also on our dance card today: LG Energy Solution has completed the acquisition of General Motors' Ultium Cells plant in Michigan. And there's finally some light at the end of the tunnel for Polestar as it narrows losses and stands to benefit from the U.S.-China trade deal.</p>
+              
+              <h3>The world's largest automaker by sales volume might have the financial might to weather the trade storm</h3>
+              <p>But its heavy reliance on Japanese parts and imports means it's likely watching its bank accounts melt amid the U.S.-Japan trade negotiations.</p>
+              
+              <p>The U.S. has slapped 25% tariffs on auto imports, vehicle parts and steel and aluminum. The Trump administration has provided some trade relief, like reimbursements on vehicle part imports for U.S.-assembled models. But the impact on Toyota is colossal no matter how you look at it.</p>
+              
+              <p>Automotive News reported on Monday that Toyota is staring at a $1.2 billion profit drop in just two months. Toyota has decided against immediate price hikes on its U.S. models to minimize consumer impact, but that means it's likely eating up those losses.</p>
+              
+              <p>Toyota has a sprawling manufacturing footprint in the U.S. with 11 factories. It manufactures and assembles many of its models stateside. The Camry, Corolla, Highlander, Sienna, Tundra, and Sequoia are all made locally.</p>
+              
+              <p>But the most popular versions of the RAV4 are assembled in Canada. The Tacoma is made in Mexico. All North American-made cars rely heavily on parts made in Japan. Lexus models are mostly imported from Japan. And over a dozen Toyota nameplates such as the Corolla hatchback, Prius, Land Cruiser, 4Runner and bZ4x are full Japanese imports.</p>
+              
+              <p>Still, Toyota has promised to increase U.S. production. Its $13 billion battery plant in North Carolina is now operational. It is set to supply locally made batteries for Toyota hybrids, plug-in hybrids and EVs. But Toyota will still require a herculean effort to minimize the impact of tariffs on all of the aforementioned models. Its U.S. plants run at a high utilization rate and don't have that much flexibility.</p>
+              
+              <p>That's why the outcome of the U.S.-Japan trade talks will be closely watched, as any deal could leave a lasting impact on Toyota and other Japanese carmakers. The bigger question in the interim is, how long can Toyota keep bleeding cash before customers see price hikes?</p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="article-card">
+          <img src="Images/shanghai.jpg" alt="Chinese EV" class="article-img">
+          <div class="p-4">
+            <div style="text-align: left;">
+            <div class="article-meta" >By Patrick George | May 9, 2025</div>
+            <h2 class="article-title">Even China's Cheapest Cars Could Absolutely Smoke Ours</h2>
+            <p class="article-excerpt">The latest budget EVs from Chinese manufacturers are outperforming American and European models at half the price...</p>
+            <a class="read-more" data-bs-toggle="collapse" href="#article2" role="button" style="color: #ff0000;">Show/Hide Article →</a>
+          </div>
+          <div class="collapse" id="article2">
+            <div class="article-content" style="text-align: left; padding: 0px;">
+                <br>
+              <p>On this week's Plugged-In Podcast: Kevin Williams joins us for Part 2 of our Shanghai Auto Show recap. Plus, could EV tax credits die?</p>
+              
+              <p>For the longest time, most people working in, or covering, the automotive industry thought of Chinese-made cars as cheap and subpar—something you wouldn't want your worst enemy to drive. I'm certainly guilty of this, too. When Chinese cars would occasionally make it to Western auto shows, we'd joke that many of them looked like "communism Corollas."</p>
+              
+              <p>Well, nobody's laughing now. As we've covered extensively at InsideEVs, China's latest offerings in the electric vehicle and plug-in hybrid space feel a decade ahead of Western competitors. Battery technology, software, manufacturing techniques, you name it—China's way ahead. And many of the cars feel like convincing alternatives to Mercedes-Benzes and Range Rovers.</p>
+              
+              <p>But I realized something yesterday when we were recording this podcast that kind of snuck up on me: even China's cheap cars are now way better than ours. And they still have cheap cars. Blame the thirst for profits or tariffs or whatever you want, but you can't even buy a Ford in America for under $30,000 anymore.</p>
+              
+              <p>It's hard not to feel a little left behind these days.</p>
+              
+              <h3>On today's episode of the Plugged-In Podcast</h3>
+              <p>We're doing the second and final recap of our trip to the 2025 Shanghai Auto Show. My co-host Tim Levin and I are joined by Staff Writer Kevin Williams, who has driven more Chinese EVs than maybe any other Western journalist. And we're going to cover some of our favorite things we tried over there, from Nio, BYD, Lynk & Co and others. Spoiler alert: the luxury stuff was great, but it was the cheap stuff I longed for most when I got home.</p>
+              
+              <p>Plus, we're also discussing a potential end to EV tax credits back home. That doesn't feel like a great move amid everything I just mentioned, does it?</p>
+              
+              <p>Check out the show wherever you get your podcasts: We're on YouTube, Apple Podcasts, Spotify, iHeartRadio and more. If you haven't yet, please subscribe to the show and leave us a review.</p>
+              
+              <p>And we're looking to answer more listener questions on the show! Drop your burning questions about EVs, EV buying and the future of transportation below, or email us at podcast@insideevs.com.</p>
+            </div>
+          </div>
+          </div>
+        </div>
+
+              <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+          <a href="#" class="footer-logo">QPTech</a>
+          <p>Bringing you the latest in technology trends, innovations, and future possibilities.</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/QPTech9"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/qptechnologies"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/qptechnologyllc/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/qp-technologies"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@qptech"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="Trends.html">Trends</a></li>
+              <li><a href="cars.html">Automobiles</a></li>
+              <li><a href="FA.html">Agriculture</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-links">
+            <h4>Contact Us</h4>
+            <ul>
+              <li><i class="fas fa-map-marker-alt me-2"></i> 105 Samson Road, Caloocan City</li>
+              <li><i class="fas fa-phone me-2"></i> +63 (123) 12345678</li>
+              <li><i class="fas fa-envelope me-2"></i> qptech@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 QPTech. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  
+  <script>
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>
+</html>

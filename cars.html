@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QPTech - Latest Car Models</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:wght@100..900&family=Lobster&family=Noto+Sans:wght@100..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary-red: #d50000;
+      --dark-bg: #000;
+      --section-bg: #111;
+      --light-text: #fff;
+      --gray-text: #ccc;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background-color: #111;
+      font-family: 'Roboto', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 3px 5px rgba(255, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+      font-family: 'Lobster', cursive;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .navbar-brand:hover {
+      color: #ff0000;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #fff;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+
+    .nav-link:hover {
+      color: #ff0000;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ff0000;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+
+    @media (min-width: 992px) {
+      .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        background-color: #1a1a1a;
+        border: none;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      .dropdown-menu {
+        background-color: #1a1a1a;
+        border: none;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+
+    .dropdown-item {
+      color: #fff;
+      position: relative;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: #ff0000;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #fff;
+      padding-left: 30px;
+    }
+
+    .dropdown-item:hover::before {
+      opacity: 1;
+      left: 15px;
+    }
+
+    .dropdown-item:active {
+      background-color: #ff0000;
+    }
+
+    .car-showcase {
+      padding: 80px 0;
+      background-color: var(--section-bg);
+    }
+    
+    .car-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .car-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-red);
+      margin-bottom: 20px;
+    }
+    
+    .car-header p {
+      font-size: 1.2rem;
+      color: var(--gray-text);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .car-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    
+    .car-nav-link {
+      padding: 10px 20px;
+      background-color: #222;
+      color: var(--light-text);
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .car-nav-link:hover, .car-nav-link.active {
+      background-color: var(--primary-red);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .car-section {
+      display: none;
+      animation: fadeIn 0.8s ease;
+    }
+    
+    .car-section.active {
+      display: block;
+    }
+    
+    .car-content {
+    background:linear-gradient(135deg, #4d0000, #000000);
+    background-color: #4d0000;      
+    border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .car-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+    
+    .car-details {
+      padding: 30px;
+    }
+    
+    .car-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: white;
+    }
+    
+    .car-description {
+      color: var(--gray-text);
+      margin-bottom: 25px;
+    }
+    
+    .specs-table {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    
+    .specs-table th {
+      background-color: #333;
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .specs-table td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+    }
+    
+    .specs-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .btn-view {
+      background-color: var(--primary-red);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-view:hover {
+      background-color: #b30000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(213, 0, 0, 0.3);
+      color: white;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) {
+      .car-header h1 {
+        font-size: 2rem;
+      }
+      
+      .car-image {
+        height: 300px;
+      }
+      
+      .car-title {
+        font-size: 1.5rem;
+      }
+    }
+    .hero {
+    height: 40vh;
+    background: linear-gradient(135deg, #1a0000, #4d0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    animation: heroAnimation 1s ease-out;
+    }
+
+    @keyframes heroAnimation {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    }
+    .breadcrumb {
+      background-color: #1a1a1a;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    
+    .breadcrumb-item a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: var(--light-color);
+    }
+        footer {
+      background-color: #111;
+      padding: 60px 0 20px;
+      color: #fff;
+    }
+
+    .footer-logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .footer-links h4 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #ff0000;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ff0000;
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: #ff0000;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      text-decoration: none;
+    }
+
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: #fff;
+      color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      0% { opacity: 0; transform: translateX(50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .breadcrumb {
+      background-color: #1a1a1a;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    
+    .breadcrumb-item a {
+      color: #ff0000;
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: #fff;
+    }
+
+    @media (max-width: 992px) {
+      .intro-content {
+        max-width: 70%;
+      }
+      
+      .intro-content h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .intro-section {
+        background: linear-gradient(to right, #000 70%, transparent),
+          url('Images/ferrariedit.png') no-repeat right center/contain;
+      }
+      
+      .intro-content {
+        max-width: 100%;
+        padding: 20px;
+      }
+      
+      .intro-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .intro-content p {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .content-section h3 {
+        font-size: 1.5rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "tall"
+          "car"
+          "food";
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">QPTech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="Trends.html" id="latesttrendsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Latest Trends
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="latesttrendsdropdown">
+              <li><a class="dropdown-item" href="Trends.html">Future Application and Potentials</a></li>
+              <li><a class="dropdown-item" href="Trends.html">Technology</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="cars.html" id="carsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cars and Automobiles
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="carsdropdown">
+              <li><a class="dropdown-item" href="cars.html">Latest Cars and Models</a></li>
+              <li><a class="dropdown-item" href="evs.html">Technology and EVs</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="FA.html" id="fooddropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Food and Agriculture
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="fooddropdown">
+              <li><a class="dropdown-item" href="FA.html">New Tools</a></li>
+              <li><a class="dropdown-item" href="FA.html">Machines and Technology</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+      <div class="container my-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home > </a></li>
+        <li class="breadcrumb-item"><a href="cars.html" style="font-weight: bold; color: #ffffff;">Latest Cars and Models</a></li>
+      </ol>
+    </nav>
+</div>
+<section class="hero">
+    <div class="container">
+    <h1>Latest Car Models</h1>
+    <p class="lead">Explore the newest and most exciting vehicles on the market today.</p>
+    </div>
+</section>
+
+  <section class="car-showcase" id="latest-cars">
+    <div class="container">
+      <div class="car-header">
+      </div>
+      <div class="car-nav">
+        <a href="#" class="car-nav-link active" data-car="ct4">Cadillac CT4-V</a>
+        <a href="#" class="car-nav-link" data-car="corvette">Chevrolet Corvette</a>
+        <a href="#" class="car-nav-link" data-car="accord">Honda Accord</a>
+        <a href="#" class="car-nav-link" data-car="boxster">Porsche Boxster</a>
+        <a href="#" class="car-nav-link" data-car="brz">Subaru BRZ</a>
+      </div>
+      
+      <div class="car-section active" id="ct4-section">
+        <div class="row car-content">
+          <div class="col-md-6 p-0">
+            <img src="Images/ct4cad.jpg" alt="Cadillac CT4-V Blackwing" class="car-image">
+          </div>
+          <div class="col-md-6">
+            <div class="car-details">
+              <h2 class="car-title">Cadillac CT4-V Blackwing</h2>
+              <p class="car-description">The most powerful Cadillac ever in its class — combining race-bred performance with luxury craftsmanship.</p>
+              
+              <table class="specs-table">
+                <tr>
+                  <td>Engine</td>
+                  <td>3.6L Twin-Turbo V6</td>
+                </tr>
+                <tr>
+                  <td>Horsepower</td>
+                  <td>472 hp</td>
+                </tr>
+                <tr>
+                  <td>0-60 mph</td>
+                  <td>3.9 seconds</td>
+                </tr>
+                <tr>
+                  <td>Top Speed</td>
+                  <td>189 mph</td>
+                </tr>
+                <tr>
+                  <td>Transmission</td>
+                  <td>6-speed manual / 10-speed automatic</td>
+                </tr>
+              </table>
+              
+              <a href="caddilac.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="car-section" id="corvette-section">
+        <div class="row car-content">
+          <div class="col-md-6 p-0">
+            <img src="Images/c8chev.jpg" alt="Chevrolet Corvette" class="car-image">
+          </div>
+          <div class="col-md-6">
+            <div class="car-details">
+              <h2 class="car-title">Chevrolet Corvette C8</h2>
+              <p class="car-description">The American supercar that delivers exotic performance at an attainable price.</p>
+              
+              <table class="specs-table">
+                <tr>
+                  <td>Engine</td>
+                  <td>6.2L V8 (LT2)</td>
+                </tr>
+                <tr>
+                  <td>Horsepower</td>
+                  <td>495 hp</td>
+                </tr>
+                <tr>
+                  <td>0-60 mph</td>
+                  <td>2.9 seconds</td>
+                </tr>
+                <tr>
+                  <td>Top Speed</td>
+                  <td>194 mph</td>
+                </tr>
+                <tr>
+                  <td>Transmission</td>
+                  <td>8-speed dual-clutch</td>
+                </tr>
+              </table>
+              
+              <a href="chevrolet.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="car-section" id="accord-section">
+        <div class="row car-content">
+          <div class="col-md-6 p-0">
+            <img src="Images/hondaaccord.jpg" alt="Honda Accord" class="car-image">
+          </div>
+          <div class="col-md-6">
+            <div class="car-details">
+              <h2 class="car-title">Honda Accord</h2>
+              <p class="car-description">Sophisticated styling, premium features and exceptional efficiency in a midsize sedan.</p>
+              
+              <table class="specs-table">
+                <tr>
+                  <td>Engine</td>
+                  <td>1.5L Turbo / 2.0L Turbo / Hybrid</td>
+                </tr>
+                <tr>
+                  <td>Horsepower</td>
+                  <td>192-252 hp</td>
+                </tr>
+                <tr>
+                  <td>0-60 mph</td>
+                  <td>5.5-7.8 seconds</td>
+                </tr>
+                <tr>
+                  <td>MPG</td>
+                  <td>29-48 combined</td>
+                </tr>
+                <tr>
+                  <td>Transmission</td>
+                  <td>CVT / 10-speed automatic</td>
+                </tr>
+              </table>
+              
+              <a href="honda.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="car-section" id="boxster-section">
+        <div class="row car-content">
+          <div class="col-md-6 p-0">
+            <img src="Images/porscheboxter.jpg" alt="Porsche Boxster" class="car-image">
+          </div>
+          <div class="col-md-6">
+            <div class="car-details">
+              <h2 class="car-title">Porsche Boxster</h2>
+              <p class="car-description">The quintessential mid-engine roadster with perfect 50:50 weight distribution.</p>
+              
+              <table class="specs-table">
+                <tr>
+                  <td>Engine</td>
+                  <td>2.0L Turbo / 4.0L Flat-6 (GTS)</td>
+                </tr>
+                <tr>
+                  <td>Horsepower</td>
+                  <td>300-394 hp</td>
+                </tr>
+                <tr>
+                  <td>0-60 mph</td>
+                  <td>3.9-4.8 seconds</td>
+                </tr>
+                <tr>
+                  <td>Top Speed</td>
+                  <td>170-182 mph</td>
+                </tr>
+                <tr>
+                  <td>Transmission</td>
+                  <td>6-speed manual / 7-speed PDK</td>
+                </tr>
+              </table>
+              
+              <a href="porsche.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="car-section" id="brz-section">
+        <div class="row car-content">
+          <div class="col-md-6 p-0">
+            <img src="Images/subarubrz.jpg" alt="Subaru BRZ" class="car-image">
+          </div>
+          <div class="col-md-6">
+            <div class="car-details">
+              <h2 class="car-title">Subaru BRZ</h2>
+              <p class="car-description">A pure sports car experience with rear-wheel drive and perfect balance.</p>
+              
+              <table class="specs-table">
+                <tr>
+                  <td>Engine</td>
+                  <td>2.4L Flat-4</td>
+                </tr>
+                <tr>
+                  <td>Horsepower</td>
+                  <td>228 hp</td>
+                </tr>
+                <tr>
+                  <td>0-60 mph</td>
+                  <td>5.8 seconds</td>
+                </tr>
+                <tr>
+                  <td>Top Speed</td>
+                  <td>140 mph</td>
+                </tr>
+                <tr>
+                  <td>Transmission</td>
+                  <td>6-speed manual / 6-speed automatic</td>
+                </tr>
+              </table>
+              
+              <a href="subaru.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+        <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+          <a href="#" class="footer-logo">QPTech</a>
+          <p>Bringing you the latest in technology trends, innovations, and future possibilities.</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/QPTech9"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/qptechnologies"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/qptechnologyllc/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/qp-technologies"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@qptech"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="Trends.html">Trends</a></li>
+              <li><a href="cars.html">Automobiles</a></li>
+              <li><a href="FA.html">Agriculture</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-links">
+            <h4>Contact Us</h4>
+            <ul>
+              <li><i class="fas fa-map-marker-alt me-2"></i> 105 Samson Road, Caloocan City</li>
+              <li><i class="fas fa-phone me-2"></i> +63 (123) 12345678</li>
+              <li><i class="fas fa-envelope me-2"></i> qptech@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 QPTech. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  
+  <script>
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const carNavLinks = document.querySelectorAll('.car-nav-link');
+      
+      carNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          carNavLinks.forEach(l => l.classList.remove('active'));
+          
+          this.classList.add('active');
+          
+          document.querySelectorAll('.car-section').forEach(section => {
+            section.classList.remove('active');
+          });
+          
+          const carId = this.getAttribute('data-car');
+          document.getElementById(`${carId}-section`).classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

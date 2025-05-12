@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QPTech Blog - Technology and Trends</title>
-
+  <meta name="description" content="Latest technology trends in AI, EVs, and Agriculture">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:wght@100..900&family=Lobster&family=Noto+Sans:wght@100..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     html {
@@ -20,6 +22,7 @@
       color: #fff;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
     .navbar {
@@ -35,10 +38,22 @@
     .navbar-brand {
       font-family: 'Lobster', cursive;
       font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .navbar-brand:hover {
+      color: #ff0000;
     }
 
     .nav-link {
       position: relative;
+      color: #fff;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+
+    .nav-link:hover {
+      color: #ff0000;
     }
 
     .nav-link::after {
@@ -48,7 +63,7 @@
       height: 2px;
       bottom: 0;
       left: 0;
-      background-color: red;
+      background-color: #ff0000;
       transition: 0.3s;
     }
 
@@ -88,7 +103,7 @@
     }
 
     .dropdown-item {
-      color: white;
+      color: #fff;
       position: relative;
       padding: 8px 20px;
       transition: all 0.3s ease;
@@ -102,7 +117,7 @@
       transform: translateY(-50%);
       width: 5px;
       height: 5px;
-      background-color: #f00;
+      background-color: #ff0000;
       border-radius: 50%;
       opacity: 0;
       transition: all 0.3s ease;
@@ -120,7 +135,7 @@
     }
 
     .dropdown-item:active {
-      background-color: #f00;
+      background-color: #ff0000;
     }
 
     .intro-section {
@@ -131,26 +146,41 @@
       align-items: center;
       padding-left: 5%;
       animation: fadeIn 1.5s ease-in-out;
+      position: relative;
+    }
+
+    .intro-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
     }
 
     .intro-content {
       max-width: 50%;
       padding: 30px;
+      position: relative;
+      z-index: 1;
     }
 
     .intro-content h1 {
       font-size: 3.5rem;
       font-weight: bold;
-      color: #f00;
+      color: #ff0000;
       margin-bottom: 20px;
       line-height: 1.2;
       animation: slideInLeft 1.2s ease;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .intro-content p {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin-bottom: 30px;
-      color: #ddd;
+      color: #ccc;
       font-family: 'Noto Sans', sans-serif;
       animation: slideInLeft 1.5s ease;
     }
@@ -163,18 +193,48 @@
       border-radius: 30px;
       transition: all 0.3s ease;
       font-family: 'Inter', sans-serif;
+      border: none;
     }
 
     .btn-light:hover {
-      background-color: #f00;
+      background-color: #ff0000;
       color: #fff;
       transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+    }
+
+    .btn-danger {
+      background-color: #ff0000;
+      border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+      background-color: #cc0000;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
     }
 
     .section-title {
-      font-size: 36px;
+      font-size: 2.5rem;
       font-weight: bold;
       margin-bottom: 20px;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #ff0000;
     }
 
     .our-story-section {
@@ -185,6 +245,11 @@
 
     .content-section {
       padding: 80px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .content-section:nth-child(even) {
+      background-color: rgba(17, 17, 17, 0.5);
     }
 
     .gallery-grid {
@@ -214,6 +279,7 @@
       object-fit: cover;
       border-radius: 10px;
       transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
     .gallery-grid img:hover {
@@ -221,14 +287,131 @@
     }
 
     .content-section h3 {
-      color: #f00;
+      color: #ff0000;
       font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 20px;
       animation: slideInRight 1.2s ease;
     }
 
     .content-section p {
       color: #ccc;
       animation: fadeIn 1.4s ease;
+      font-size: 1.1rem;
+      max-width: 800px;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 60px 0 20px;
+      color: #fff;
+    }
+
+    .footer-logo {
+      font-family: 'Lobster', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .footer-links h4 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #ff0000;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ff0000;
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: #ff0000;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      text-decoration: none;
+    }
+
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background-color: #fff;
+      color: #ff0000;
+      transform: translateY(-5px);
     }
 
     @keyframes fadeIn {
@@ -250,6 +433,67 @@
       0% { opacity: 0; transform: translateX(50px); }
       100% { opacity: 1; transform: translateX(0); }
     }
+
+    .breadcrumb {
+      background-color: #1a1a1a;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    
+    .breadcrumb-item a {
+      color: #ff0000;
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: #fff;
+    }
+
+    @media (max-width: 992px) {
+      .intro-content {
+        max-width: 70%;
+      }
+      
+      .intro-content h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .intro-section {
+        background: linear-gradient(to right, #000 70%, transparent),
+          url('Images/ferrariedit.png') no-repeat right center/contain;
+      }
+      
+      .intro-content {
+        max-width: 100%;
+        padding: 20px;
+      }
+      
+      .intro-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .intro-content p {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .content-section h3 {
+        font-size: 1.5rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "tall"
+          "car"
+          "food";
+      }
+    }
   </style>
 </head>
 
@@ -264,36 +508,36 @@
         <ul class="navbar-nav ms-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="index.html">Home</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="latesttrendsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="Trends.html" id="latesttrendsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Latest Trends
             </a>
             <ul class="dropdown-menu" aria-labelledby="latesttrendsdropdown">
-              <li><a class="dropdown-item" href="#future">Future Application and Potentials</a></li>
-              <li><a class="dropdown-item" href="#trend-tech">Technology</a></li>
+              <li><a class="dropdown-item" href="Trends.html">Future Application and Potentials</a></li>
+              <li><a class="dropdown-item" href="Trends.html">Technology</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="carsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="cars.html" id="carsdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Cars and Automobiles
             </a>
             <ul class="dropdown-menu" aria-labelledby="carsdropdown">
-              <li><a class="dropdown-item" href="#latest-cars">Latest Cars and Models</a></li>
-              <li><a class="dropdown-item" href="#car-tech">Technology and EVs</a></li>
+              <li><a class="dropdown-item" href="cars.html">Latest Cars and Models</a></li>
+              <li><a class="dropdown-item" href="evs.html">Technology and EVs</a></li>
             </ul>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="fooddropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="FA.html" id="fooddropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Food and Agriculture
             </a>
             <ul class="dropdown-menu" aria-labelledby="fooddropdown">
-              <li><a class="dropdown-item" href="#tools">New Tools</a></li>
-              <li><a class="dropdown-item" href="#food-tech">Machines and Technology</a></li>
+              <li><a class="dropdown-item" href="FA.html">New Tools</a></li>
+              <li><a class="dropdown-item" href="FA.html">Machines and Technology</a></li>
             </ul>
           </li>
 
@@ -305,8 +549,8 @@
   <section class="intro-section">
     <div class="intro-content">
       <h1>TECH BLOGGING AT ITS BEST!</h1>
-      <p>Discover the latest in AI, EVs, Automobiles, and AgriTech</p>
-      <a href="#overview" class="btn btn-light">Explore Trends</a>
+      <p>Discover the latest in AI, EVs, Automobiles, and AgriTech with in-depth analysis and expert insights</p>
+      <a href="Trends.html" class="btn btn-light">Explore Trends</a>
     </div>
   </section>
 
@@ -315,15 +559,16 @@
       <div class="row align-items-center">
         <div class="col-md-6">
           <div class="gallery-grid">
-            <div class="tall"><img src="Images/machinelearning.png" style="height: 400px;"></div>
-            <div class="car"><img src="Images/carsmall.png" style="height: 170px;"></div>
-            <div class="food"><img src="Images/foodorig.jpg" style="height: 230px;"></div>
+            <div class="tall"><img src="Images/machinelearning.png" style="height: 400px;" alt="Machine Learning"></div>
+            <div class="car"><img src="Images/carsmall.png" style="height: 170px;" alt="Electric Car"></div>
+            <div class="food"><img src="Images/foodorig.jpg" style="height: 230px;" alt="Agricultural Technology"></div>
           </div>
         </div>
         <div class="col-md-6">
           <h2 class="section-title">Tech Blog Overview</h2>
-          <p>Welcome to QPTech, where we deliver the latest stories, breakthroughs, and trends in Artificial Intelligence, Electric Vehicles, Smart Agriculture, and Future Technology. Enjoy curated content with easy-to-read articles and detailed author bios.</p>
-          <a href="#" class="btn btn-danger mt-3">Read More Blogs</a>
+          <p>Welcome to QPTech, where we deliver the latest stories, breakthroughs, and trends in Artificial Intelligence, Electric Vehicles, Smart Agriculture, and Future Technology. Our team of experts provides in-depth analysis, practical guides, and thought-provoking content to keep you at the forefront of technological innovation.</p>
+          <p>Whether you're a tech enthusiast, industry professional, or just curious about the future, our content is curated to inform and inspire. Enjoy easy-to-read articles, detailed author bios, and multimedia-rich experiences.</p>
+          <a href="evs.html" class="btn btn-danger mt-3">Read More Blogs</a>
         </div>
       </div>
     </div>
@@ -332,24 +577,98 @@
   <section class="content-section" id="ai">
     <div class="container">
       <h3>Artificial Intelligence & Future Applications</h3>
-      <p>Explore how AI is transforming industries—from smart assistants to generative models, automation, and beyond. Stay informed on how machine learning and robotics are shaping the next decade.</p>
+      <p>Explore how AI is transforming industries—from smart assistants to generative models, automation, and beyond. Stay informed on how machine learning and robotics are shaping the next decade. We cover breakthroughs in natural language processing, computer vision, and neural networks, along with their ethical implications and real-world applications across healthcare, finance, and creative industries.</p>
     </div>
   </section>
 
   <section class="content-section" id="autos">
     <div class="container">
       <h3>Cars, EVs, and Automotive Technology</h3>
-      <p>Catch the newest electric vehicle launches, concept car designs, and the rise of self-driving technology. From Tesla to emerging EV startups, we cover it all with technical insights and media highlights.</p>
+      <p>Catch the newest electric vehicle launches, concept car designs, and the rise of self-driving technology. From Tesla to emerging EV startups, we cover it all with technical insights and media highlights. Our automotive section dives into battery technology advancements, charging infrastructure developments, and the future of autonomous vehicles, helping you understand where the industry is headed.</p>
     </div>
   </section>
 
   <section class="content-section" id="food">
     <div class="container">
       <h3>Food & Agricultural Technology</h3>
-      <p>Smart farming, AI-driven harvesting, and sustainable food technologies—learn how technology is modernizing the way we grow, process, and consume food around the world.</p>
+      <p>Smart farming, AI-driven harvesting, and sustainable food technologies—learn how technology is modernizing the way we grow, process, and consume food around the world. We explore vertical farming innovations, precision agriculture tools, food science breakthroughs, and how blockchain is transforming supply chain transparency in the food industry.</p>
     </div>
   </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+          <a href="#" class="footer-logo">QPTech</a>
+          <p>Bringing you the latest in technology trends, innovations, and future possibilities.</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/QPTech9"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/qptechnologies"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/qptechnologyllc/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/qp-technologies"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@qptech"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="Trends.html">Trends</a></li>
+              <li><a href="cars.html">Automobiles</a></li>
+              <li><a href="FA.html">Agriculture</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-links">
+            <h4>Contact Us</h4>
+            <ul>
+              <li><i class="fas fa-map-marker-alt me-2"></i> 105 Samson Road, Caloocan City</li>
+              <li><i class="fas fa-phone me-2"></i> +63 (123) 12345678</li>
+              <li><i class="fas fa-envelope me-2"></i> qptech@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 QPTech. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  
+  <script>
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
