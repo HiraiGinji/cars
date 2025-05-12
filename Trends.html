@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -687,3 +688,363 @@
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QPTech Blog - Technology and Trends</title>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:wght@100..900&family=Lobster&family=Noto+Sans:wght@100..900&family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: #111;
+      font-family: 'Roboto', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 3px 5px rgba(255, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      animation: navbarFadeIn 1s forwards;
+    }
+
+    .navbar-brand {
+      font-family: 'Lobster', cursive;
+      font-size: 1.8rem;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: red;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+
+    @media (min-width: 992px) {
+      .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        background-color: #1a1a1a;
+        border: none;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      .dropdown-menu {
+        background-color: #1a1a1a;
+        border: none;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+
+    @keyframes navbarFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .dropdown-item {
+      color: white;
+      position: relative;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background-color: #f00;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #fff;
+      padding-left: 30px;
+    }
+
+    .dropdown-item:hover::before {
+      opacity: 1;
+      left: 15px;
+    }
+
+    .dropdown-item:active {
+      background-color: #f00;
+    }
+
+    .hero {
+    height: 40vh;
+    background: linear-gradient(135deg, #1a0000, #4d0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    animation: heroAnimation 1s ease-out;
+    }
+
+    @keyframes heroAnimation {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    }
+
+    .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .author-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    }
+
+    .section-title {
+    font-weight: 700;
+    margin-bottom: 2rem;
+    }
+
+    .card-title {
+    font-weight: 600;
+    }
+
+    .bg-section {
+    background:linear-gradient(135deg, #2b2a2a, #000000, #353434);
+    background-color: #1a1a1a;
+    padding: 3rem 0;
+    }
+
+    .trend-section {
+    margin-bottom: 4rem;
+    }
+
+    .trend-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    }
+
+    .card {
+    background:linear-gradient(135deg, #4d0000, #000000);
+    background-color: #4d0000;
+    color: #fff;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+    <a class="navbar-brand" href="#">QPTech</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+        <li class="nav-item"><a class="nav-link" href="Trends.html">AI & Future</a></li>
+        <li class="nav-item"><a class="nav-link" href="#autos">Cars & EVs</a></li>
+        <li class="nav-item"><a class="nav-link" href="FA.html">Food & AgriTech</a></li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+    <h1>Find the Latest Trends in A.I.</h1>
+    <p class="lead">Trends, AI Innovations, and Future Technologies</p>
+    </div>
+</section>
+
+<section id="trends" class="bg-section">
+    <div class="container">
+    <h2 class="text-center section-title">Latest AI Trends</h2>
+    <br><br><br>
+    <div class="trend-section">
+        <div class="row align-items-center">
+        <div class="col-md-7">
+            <h3><b>ChatGPT & Conversational AI</b></h3>
+            <p>ChatGPT is an advanced AI chatbot developed by OpenAI, designed to engage in human-like conversations 
+                and assist with a wide range of tasks. Launched on November 30, 2022, it has become one of the 
+                fastest-growing consumer software applications in history, reaching over 100 million users within 
+                two months of its release. <br><br> ChatGPT continues to trend due to its rapid growth, innovative features, 
+                and widespread integration across various sectors. As of early 2025, it has become a central tool in digital 
+                marketing, e-commerce, and even personal relationships.</p>
+            
+        </div>
+        <div class="col-md-5 text-center">
+            <img src="Images/chatgpt.png" alt="ChatGPT" class="trend-image">
+        </div>
+        </div>
+            <div class="row mt-4 g-4">
+                <div class="col-md-4 d-flex">
+                <div class="card shadow-sm h-100 w-100">
+                    <img src="Images/humanai.png" class="card-img-top" alt="Natural Conversations">
+                    <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Natural Conversations</h5>
+                    <p class="card-text">AI can now mimic human tone and behavior for more natural interactions.</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                <div class="card shadow-sm h-100 w-100">
+                    <img src="Images/24_7.png" class="card-img-top" alt="24/7 Assistance">
+                    <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">24/7 Assistance</h5>
+                    <p class="card-text">Always-available virtual agents support businesses worldwide.</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                <div class="card shadow-sm h-100 w-100">
+                    <img src="Images/bulb.png" class="card-img-top" alt="Enhanced Learning">
+                    <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Enhanced Learning</h5>
+                    <p class="card-text">Tutors powered by ChatGPT aid student learning across subjects.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    <br><br>
+    <div class="trend-section">
+        <div class="row align-items-center">
+        <div class="col-md-7">
+            <h3><b>Project Turntable</b></h3>
+            <p>Project Turntable leverages machine learning to transform flat vector illustrations into 
+                3D-like visuals. By simply clicking a button and adjusting a slider, users can rotate their 
+                artwork, and the AI intelligently fills in any missing parts, such as hidden limbs or back 
+                details, maintaining the integrity of the original design.<br><br>
+                In a quick five-minute stage presentation at the MAX conference, 
+                Adobe researcher Zhiqin Chen starts with a 2D vectorized Illustrator scene of a 
+                warrior fighting a dragon. The warrior is staring directly out of the screen, though, 
+                and turning him to face the dragon on his left would usually require "redraw[ing] the entire shape, 
+                which is going to take a lot of time," as Chen points out.</p>
+        </div>
+        <div class="col-md-5 text-center">
+            <img src="Images/Adobe.png" alt="Adobe Logo" class="trend-image">
+        </div>
+        </div>
+        <div class="row mt-4 g-4">
+            <div class="col-md-4 d-flex">
+            <div class="card shadow-sm h-100 w-100">
+                <img src="Images/360.png" class="card-img-top" alt="Prompt-Based Design">
+                <div class="card-body d-flex flex-column">
+                <h5 class="card-title">360° Visual Generation</h5>
+                <p class="card-text">It can take a single image and generate a full turntable-style rotation—giving the illusion of a 3D model without actually needing a 3D scan.</p>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4 d-flex">
+            <div class="card shadow-sm h-100 w-100">
+                <img src="Images/aipower.png" class="card-img-top" alt="ai-powered">
+                <div class="card-body d-flex flex-column">
+                <h5 class="card-title">AI-Powered Consistency</h5>
+                <p class="card-text">The model understands object geometry and lighting, generating consistent, realistic views that align smoothly as the object "spins".</p>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4 d-flex">
+            <div class="card shadow-sm h-100 w-100">
+                <img src="Images/fast.png" class="card-img-top" alt="fast">
+                <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Faster Product Visualization</h5>
+                <p class="card-text">Great for ecommerce, marketing, and design mockups—it drastically cuts the time and cost needed to visualize products in multiple angles.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</section>
+
+<section id="ai" class="py-5 bg-dark text-white">
+    <div class="container">
+    <h2 class="text-center section-title">Artificial Intelligence Overview</h2>
+    <p class="text-center lead">From automation to creative content generation, AI is reshaping industries and empowering both individuals and businesses like never before.</p>
+    </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+    <small>&copy; 2025 FutureTech Blog. All rights reserved.</small>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+>>>>>>> 00c7d56ecf87c96d441723ec14848b1a28a83808
